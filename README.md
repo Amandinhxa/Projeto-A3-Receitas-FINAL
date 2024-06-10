@@ -15,16 +15,28 @@ Para realizar o setup do projeto.
   cd api
 ```
 
+### Instale as dependencias
+
+```bash
+  npm install
+```
+
 ### Rode o projeto em modo dev
 
 ```bash
   npm run start:dev
 ```
 
-### Abra um novo terminal e entre no diretório do Front
+### Abra um novo terminal (enquanto deixa o backend rodar) e entre no diretório do Front
 
 ```bash
   cd webapp
+```
+
+### Instale as dependencias
+
+```bash
+  npm install
 ```
 
 ### Rode o projeto em modo dev
