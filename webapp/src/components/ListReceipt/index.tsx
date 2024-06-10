@@ -52,6 +52,15 @@ export const ListReceipt = () => {
 			});
 	};
 
+	const handleDelete = async (id: number) => {
+		try {
+			await axios.delete(`http://localhost:3000/receitas/${id}`);
+			setReceipts(receipts.filter((receipt: Receita) => receipt.id !== id));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	useEffect(() => {
 		axios
 			.get("http://localhost:3000/receitas")
@@ -63,7 +72,7 @@ export const ListReceipt = () => {
 			});
 	}, []);
 
-	const modalCreateReceipt = () => {
+	const ModalCreateReceipt = () => {
 		return (
 			<dialog id="modalReceipt" className="modal modal-bottom sm:modal-middle">
 				<div className="modal-box">
@@ -139,30 +148,6 @@ export const ListReceipt = () => {
 			</div>
 		);
 
-	if (receipts.length === 0 && !loading)
-		return (
-			<div className="text-center p-4">
-				<p>Nenhuma receita encontrada</p>
-				{isAuthenticated && user && (
-					<>
-						<div className="flex flex-col gap-4">
-							<p>Crie uma nova receita clicando no botão "Nova Receita"</p>
-							<button
-								className="btn btn-outline btn-secondary"
-								onClick={() => {
-									// @ts-ignore
-									document.getElementById("modalReceipt")?.showModal();
-								}}
-							>
-								Nova Receita
-							</button>
-							{modalCreateReceipt()}
-						</div>
-					</>
-				)}
-			</div>
-		);
-
 	return (
 		<>
 			{isAuthenticated && user && (
@@ -178,13 +163,18 @@ export const ListReceipt = () => {
 						>
 							Nova Receita
 						</button>
-						{modalCreateReceipt()}
+						{ModalCreateReceipt()}
 					</div>
 				</>
 			)}
+			{receipts.length === 0 && !loading && (
+				<div className="text-center p-4">
+					<p>Nenhuma receita encontrada</p>
+				</div>
+			)}
 			<div className="grid grid-cols-3 gap-4 rounded-box p-4">
 				{receipts.map((receita: Receita) => (
-					<Receipt receita={receita} />
+					<Receipt receita={receita} handleDelete={handleDelete} />
 				))}
 			</div>
 		</>

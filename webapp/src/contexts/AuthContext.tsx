@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import { User, UserSaved } from "../types/User";
+import { User } from "../types/User";
 import * as jose from "jose";
 import axios from "axios";
 
 export type AuthContextType = {
-	user: UserSaved | null;
-	setUser: (user: UserSaved) => void;
+	user: Partial<User> | null;
+	setUser: (user: Partial<User>) => void;
 	login: (email: string, senha: string) => void;
 	isAuthenticated: boolean;
 	setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -17,11 +17,11 @@ export type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider = ({ children }: any) => {
-	const [user, setUser] = useState<UserSaved | null>(null);
+	const [user, setUser] = useState<Partial<User> | null>(null);
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-	const login = (email: string, senha: string) => {
-		axios
+	const login = async (email: string, senha: string) => {
+		await axios
 			.post("http://localhost:3000/auth/login", {
 				email: email,
 				senha: senha,
@@ -30,8 +30,8 @@ const AuthProvider = ({ children }: any) => {
 				localStorage.setItem("token", response.data.access_token);
 
 				const token = jose.decodeJwt(response.data.access_token);
-				console.log(token)
-				const user: UserSaved = {
+				console.log(token);
+				const user: Partial<User> = {
 					email: token.username as string,
 					id_user: Number(token.sub),
 					nome: token.nome as string,
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }: any) => {
 
 		const decodedToken = jose.decodeJwt(token as string);
 
-		const user: UserSaved = {
+		const user: Partial<User> = {
 			email: decodedToken.username as string,
 			id_user: Number(decodedToken.sub),
 			nome: decodedToken.nome as string,
@@ -64,8 +64,8 @@ const AuthProvider = ({ children }: any) => {
 		setUser(null);
 	};
 
-	const createUser = (user: Partial<User>) => {
-		axios.post("http://localhost:3000/user", user).then(() => {
+	const createUser = async (user: Partial<User>) => {
+		await axios.post("http://localhost:3000/user", user).then(() => {
 			login(user.email as string, user.senha as string);
 		});
 	};

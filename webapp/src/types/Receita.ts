@@ -1,9 +1,7 @@
-import { ReceitaUser } from "./ReceitaUser";
-
 export type Receita = {
-	id_receita: number;
+	id: number;
 	anoPublicacao: number;
 	titulo: string;
 	resumo: string;
-	receitaUser: ReceitaUser[];
+	picture: string;
 };
