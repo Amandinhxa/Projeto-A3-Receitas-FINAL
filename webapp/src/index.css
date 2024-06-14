@@ -2,3 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	background-color: #100e0f;
+}
+
+.modal::backdrop {
+	@apply bg-black bg-opacity-50 backdrop-blur-sm;
+}
+
+input {
+	@apply outline-none;
+}
+
+.input {
+	@apply border-gray-800 text-gray-800 outline-none;
+}
+
+.input-bordered {
+	@apply border border-gray-800 p-2;
+}
+
+.textarea {
+	@apply text-gray-800 p-2 outline-gray-800 outline;
+}
+
+.btn {
+	@apply px-4 py-2 rounded-md border-2;
+}
+
+.btn-ghost {
+	@apply border-transparent;
+}
+
+.btn-dark {
+	@apply border-gray-800;
+}
+
+.btn-light {
+	@apply border-white;
+}
+
+.label {
+	@apply pb-2;
+}

@@ -75,9 +75,9 @@ export const ListReceipt = () => {
 	const ModalCreateReceipt = () => {
 		return (
 			<dialog id="modalReceipt" className="modal modal-bottom sm:modal-middle">
-				<div className="modal-box">
+				<div className="p-4 bg-base-200 rounded-sm">
 					<div className="flex flex-row justify-between items-center py-2">
-						<h3 className="font-bold text-lg">Crie sua receita!</h3>
+						<h3 className="font-bold text-2xl">Crie sua receita!</h3>
 						<form method="dialog">
 							<button className="btn btn-sm btn-circle btn-ghost">✕</button>
 						</form>
@@ -115,7 +115,7 @@ export const ListReceipt = () => {
 										<span className="label-text">Resumo da receita</span>
 									</div>
 									<textarea
-										className="textarea textarea-secondary"
+										className="textarea w-full"
 										placeholder="Resumo"
 										onChange={(e) =>
 											setReceiptObj({ ...receiptObj, resumo: e.target.value })
@@ -125,7 +125,7 @@ export const ListReceipt = () => {
 							</div>
 							<div className="form-control"></div>
 							<button
-								className="btn btn-primary"
+								className="btn btn-dark"
 								onClick={() => {
 									createReceipt();
 									// @ts-ignore
@@ -143,19 +143,19 @@ export const ListReceipt = () => {
 
 	if (loading)
 		return (
-			<div className="text-center p-4">
+			<div className="text-center p-4 h-screen">
 				<p>Carregando...</p>
 			</div>
 		);
 
 	return (
-		<>
+		<div className="h-screen">
 			{isAuthenticated && user && (
 				<>
-					<div className="flex flex-row items-center justify-between gap-4 p-4">
+					<div className="flex flex-row items-center justify-between gap-4 p-4 text-white">
 						<p>Crie uma nova receita clicando no botão "Nova Receita"</p>
 						<button
-							className="btn btn-outline btn-secondary"
+							className="px-4 py-2 rounded-md border-white border-2"
 							onClick={() => {
 								// @ts-ignore
 								document.getElementById("modalReceipt")?.showModal();
@@ -168,7 +168,7 @@ export const ListReceipt = () => {
 				</>
 			)}
 			{receipts.length === 0 && !loading && (
-				<div className="text-center p-4">
+				<div className="text-center p-4 text-white">
 					<p>Nenhuma receita encontrada</p>
 				</div>
 			)}
@@ -177,6 +177,6 @@ export const ListReceipt = () => {
 					<Receipt receita={receita} handleDelete={handleDelete} />
 				))}
 			</div>
-		</>
+		</div>
 	);
 };

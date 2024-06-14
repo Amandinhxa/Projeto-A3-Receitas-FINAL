@@ -15,9 +15,9 @@ export default function ModalCreateAccount({
 			id="modalCreateAccount"
 			className="modal modal-bottom sm:modal-middle"
 		>
-			<div className="modal-box">
+			<div className="p-4 bg-base-200 rounded-sm">
 				<div className="flex flex-row justify-between items-center py-2">
-					<h3 className="font-bold text-lg">Faça seu cadastro!</h3>
+					<h3 className="font-bold text-2xl">Faça seu cadastro!</h3>
 					<form method="dialog">
 						<button className="btn btn-sm btn-circle btn-ghost">✕</button>
 					</form>

@@ -12,7 +12,7 @@ export default function ModalLogin({
 }: Props) {
 	return (
 		<dialog id="modalLogin" className="modal modal-bottom sm:modal-middle">
-			<div className="modal-box">
+			<div className="p-4 bg-base-200 rounded-sm">
 				<div className="flex flex-row justify-between items-center py-2">
 					<h3 className="font-bold text-lg">Faça seu login!</h3>
 					<form method="dialog">

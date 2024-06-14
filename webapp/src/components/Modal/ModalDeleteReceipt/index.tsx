@@ -8,7 +8,7 @@ export default function DeleteReceiptModal({ id, handleDelete }: Props) {
 			id="modalDeleteReceipt"
 			className="modal modal-bottom sm:modal-middle"
 		>
-			<div className="modal-box">
+			<div className="p-4 bg-base-200 rounded-sm">
 				<div className="flex flex-row justify-between items-center py-2">
 					<h3 className="font-bold text-lg">
 						Você tem certeza que deseja deletar essa receita?
